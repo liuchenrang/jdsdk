@@ -1,0 +1,14 @@
+{
+    "name": "phpyiqiwan/jdsdk"
+    ,"type": "library"
+    ,"description": " "
+    ,"version": "0.9.6"
+    ,"keywords": [] 
+    ,"license": "MIT"
+    ,"authors": [
+         
+    ],
+    "autoload": {
+        "classmap": ["./"]
+    }
+}
