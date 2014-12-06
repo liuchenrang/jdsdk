@@ -25,8 +25,11 @@ class JdClient
     protected $connectTimeout = 0;
     protected $readTimeout = 0;
     public function __construct(){
-         $this->gwUrl = Yii::app()->params['jdGw'];      
+        
     }
+	public function setGwUrl($gwUrl){
+		   $this->gwUrl = $gwUrl;    
+	}
     public function  execute($request)
     { 
         //组装系统参数 
