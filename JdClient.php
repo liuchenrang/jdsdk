@@ -108,25 +108,22 @@ class JdClient
                 throw new Exception($response, $httpStatusCode);
             }
         }
-        $apiTrace = Yii::app()->session->get('apiTrace' ); 
-        if (isset($apiParams['method']) && $apiTrace || USER_DEBUG) {
-            $logs['method'] = $apiParams['method'];
-            $logs['func'] = Yii::app()->session->get('func' ); 
+		if($this->logger &&  method_exists($this->logger,'debugLog')){
+			$logs['method'] = $apiParams['method'];
+         
             $logs['url'] = $request_api_url;
-            $logs['return_data'] = $response;
-            $logs['jd_user'] =  Yii::app()->session->get('nickname' ); 
-            $logs['jd_user_id'] =  Yii::app()->session->get('uid');  
-            //$logs['env_run'] = $apiParams['env_run'];
-            //$logs['ware_id'] = $apiParams['ware_id'];
-     
-
-            Utils::addApiLog($logs); 
-        }
+            $logs['return_data'] = $response; 
+			$this->logger->debugLog(var_export($logs,true));
+		} 
+        
         
         curl_close($ch);
         return $response;
     }
-
+	private $logger;
+	public  function setLogger($logger){
+			$this->logger = $logger;
+	}
     /**
      * 拼接系统参数
      * @param $params
