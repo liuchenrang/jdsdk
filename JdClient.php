@@ -13,7 +13,7 @@ class JdClient
     public $appSecret;
     public $accessToken;
     //todo 将正式环境的换回来
-    public $gwUrl = "http://gw.api.sandbox.360buy.com/routerjson";
+    public static $gwUrl = "http://gw.api.sandbox.360buy.com/routerjson";
     /**
      * api 版本
      * @var string
@@ -28,7 +28,7 @@ class JdClient
         
     }
 	public function setGwUrl($gwUrl){
-		   $this->gwUrl = $gwUrl;    
+		   self::$gwUrl = $gwUrl;    
 	}
     public function  execute($request)
     { 
@@ -47,7 +47,7 @@ class JdClient
          
         //$sysUrl = $this->buildUrl($sysParams);
     
-        $requestUrl = $this->gwUrl;
+        $requestUrl = self::$gwUrl;
         //$requestUrl .= $sysUrl .'&360buy_param_json'.  $apiParams["360buy_param_json"];
           
         //发送http请求
@@ -108,21 +108,21 @@ class JdClient
                 throw new Exception($response, $httpStatusCode);
             }
         }
-		if($this->logger &&  method_exists($this->logger,'debugLog')){
+		if(self::$logger &&  method_exists(self::$logger,'debugLog')){
 			$logs['method'] = $apiParams['method'];
          
             $logs['url'] = $request_api_url;
             $logs['return_data'] = $response; 
-			$this->logger->debugLog(var_export($logs,true));
+			self::$logger->debugLog(var_export($logs,true));
 		} 
         
         
         curl_close($ch);
         return $response;
     }
-	private $logger;
-	public  function setLogger($logger){
-			$this->logger = $logger;
+	private static $logger;
+	public static  function setLogger($logger){
+			self::$logger = $logger;
 	}
     /**
      * 拼接系统参数
