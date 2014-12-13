@@ -28,10 +28,10 @@ class JdClient
     public function __construct(){
         
     }
-	public function setReturnObject($boolean){
+	static public function setReturnObject($boolean){
 		   self::$returnObject = $boolean;    
 	}
-	public function setGwUrl($gwUrl){
+	static public function setGwUrl($gwUrl){
 		   self::$gwUrl = $gwUrl;    
 	}
     public function  execute($request)
