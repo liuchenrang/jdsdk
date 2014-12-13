@@ -12,6 +12,7 @@ class JdClient
     public $appKey;
     public $appSecret;
     public $accessToken;
+	public $returnObject = true;
     //todo 将正式环境的换回来
     public static $gwUrl = "http://gw.api.sandbox.360buy.com/routerjson";
     /**
@@ -27,6 +28,9 @@ class JdClient
     public function __construct(){
         
     }
+	public function setReturnObject($boolean){
+		   self::$returnObject = $boolean;    
+	}
 	public function setGwUrl($gwUrl){
 		   self::$gwUrl = $gwUrl;    
 	}
