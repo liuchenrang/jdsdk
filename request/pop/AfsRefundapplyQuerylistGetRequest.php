@@ -4,7 +4,7 @@
  * Date: 12-6-13
  * Time: ÏÂÎç1:36
  */
-class VenderInfoGetGetRequest{
+class AfsRefundapplyQuerylistGetRequest{
 	private $apiParams = array();
 	function __set($key,$value){
 	  $this->apiParams[$key] = $value;
@@ -25,7 +25,7 @@ class VenderInfoGetGetRequest{
      */
     public function getApiMethod()
     {
-        return "jingdong.seller.vender.info.get";
+        return "jingdong.pop.afs.refundapply.querylist";
     }
 }
  
